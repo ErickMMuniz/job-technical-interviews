@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath} % Necesario para el entorno equation
+
+\title{Solución al Problema del Huevo y el Edificio}
+\author{Erick Muñiz Morales}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Estrategia Óptima y Número de Intentos}
+
+El objetivo es encontrar el número mínimo de intentos ($k$) requeridos para determinar la resistencia de un huevo en un edificio de 100 pisos. La estrategia óptima para el peor caso, diferente a la búsqueda binaria, utiliza una progresión aritmética decreciente.
+
+\subsection*{Principio de la Progresión Aritmética}
+
+La estrategia consiste en elegir saltos de piso que se reducen en una unidad con cada éxito. Si se requieren $k$ intentos en total, el primer intento debe realizarse desde el piso $k$. Si el huevo sobrevive, el siguiente salto es de $k-1$ pisos, luego $k-2$, y así sucesivamente, hasta un salto de 1 piso. Esto garantiza que si el huevo se rompe en cualquier intento, los intentos restantes serán suficientes para una búsqueda lineal exhaustiva en el rango anterior.
+
+\subsection*{Cálculo del Mínimo de Intentos ($k$)}
+
+El número total de pisos cubiertos por $k$ intentos es la suma de los primeros $k$ enteros positivos. Esta suma debe ser mayor o igual a 100:
+
+\begin{equation}
+    N_{\text{pisos}} = k + (k-1) + (k-2) + \dots + 1 = \sum_{i=1}^{k} i
+\end{equation}
+
+Aplicando la fórmula de la suma de Gauss:
+
+\begin{equation}
+    \frac{k(k+1)}{2} \ge 100
+\end{equation}
+
+
+\subsubsection*{Verificación para $k=14$}
+Si $k=14$, el número máximo de pisos cubiertos es:
+\begin{equation*}
+    \frac{14(14+1)}{2} = \frac{14 \times 15}{2} = 105
+\end{equation*}
+Dado que $105 \ge 100$, \textbf{14 intentos} es el número mínimo requerido.
+
+\subsection{Solución óptioma}
+
+En ese caso, la mejor solución que encontramos es una estrategia binaria. Es decir, partiendo de un piso y haciendo una búsqueda en una de las mitades del edificio. 
+
+
+
+\end{document}
