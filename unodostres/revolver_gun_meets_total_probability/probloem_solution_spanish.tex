@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\title{Ejercicio UnoDosTres}
+\author{Erick Muñiz Morales }
+\date{November 2025}
+
+\begin{document}
+
+\maketitle
+
+
+\section{Problema}
+
+Tenemos un revolver con $n$ espacios en el barril (ie que le caben $n$ balas). A el barril se le insertan 2 balas de forma consecutiva. La persona con el revolver va a disparar al aire una vez y después nos va apuntar con el revolver y después disparar. 
+
+Debemos decidir si gira o no el barril del revolver después del primer disparo. La decisión la debemos hacer \textbf{antes} de que la persona haga el primer disparo. 
+
+\subsection{Solución}
+
+Definamos $M_g$ el evento de morir dado que gira el barril y $M_g^c$ el evento de morir dando que \textbf{no} gira el barril. 
+
+Sea $T_b$ el evento donde el primer tiro al aire tiene una bala y sea $T_b^c$ el evento donde el primer tiro \textbf{no} tiene una bala. Por conteo, tenemos que 
+
+$$P(T_b ) = \frac{2}{n}$$
+
+$$P(T_b^c ) = \frac{n-2}{n}$$
+
+Haciendo cálculos por conteo, tenemos la siguientes probabilidades de morir.
+
+\begin{table}[h!]
+    \centering
+    \large
+    \renewcommand{\arraystretch}{1.5} % <-- 2. Increase row spacing
+    \begin{tabular}{|c|c|c|} 
+ \hline
+  & Gira el barril & \textbf{No} gira el barril \\ 
+ \hline
+ $T_b$ & $\frac{1}{n}$ & $\frac{1}{2}$ \\ 
+ \hline
+ $T_b^c$ & $\frac{2}{n}$ & $\frac{1}{n-2}$ \\ 
+ \hline
+\end{tabular}
+    % \caption{Caption}
+    % \label{tab:placeholder}
+\end{table}
+
+
+Así, calculemos la probabilidad de $M_g$ y $M_g^c$ usando probabilidad total sobre los eventos $T_b$ y $T_b^c$
+
+$$P(M_g) = P(M_g | T_b ) P(T_b) + P(M_g | T_b^c ) P(T_b^c)  = \frac{1}{n} \frac{2}{n}  + \frac{2}{n} \frac{n-2}{n} = \frac{2(n-1)}{n ^2}$$
+
+$$P(M_g^c) = P(M_g^c | T_b ) P(T_b) + P(M_g^c | T_b^c ) P(T_b^c)  = \frac{1}{2} \frac{2}{n}  + \frac{1}{n-2} \frac{n-2}{n} = \frac{2}{n}$$
+
+
+Así, despejando apropiadamente,
+
+$$P(M_g) = \frac{2(n-1)}{n ^2} = \frac{2}{n} \frac{n-1}{n} = \frac{n-1}{n} P(M_g^c) $$
+
+Considerando una $n > 1$, tenemos que $\frac{n-1}{n} < 1$. Así, tenemos que 
+
+$$ P(M_g) < P(M_g^c) $$
+
+Lo que significa que hay una mayor probabilidad de morir si se gira después del primer tiro al aire sin importar el resultado de ese tiro. Así que decido que gire después del primer tiro. 
+
+\end{document}
